@@ -1,0 +1,33 @@
+.img-thumbnail{
+	width: 50%;
+	max-height: 400px;
+	margin-left: 25%;
+}
+.img-perfil{
+	max-width: 200px;
+	height: 200px;
+	margin-left: 25.5%;
+	margin-top: -218px;
+	margin-bottom: 20px;
+	border-radius: 20px;
+}
+.tabela{
+	width: 50%;
+	margin: auto;
+}
+@media screen and (max-width: 1250px){
+	.tabela{
+		width: 100%;
+		margin: auto;
+	}
+	.img-perfil{
+		max-width: 150px;
+		height: 150px;
+		margin-top: 0px;	
+		margin-left: 0px;
+	}
+	.img-thumbnail{
+		display: none;
+	}
+
+}

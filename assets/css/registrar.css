@@ -1,0 +1,10 @@
+
+.botoes a{
+	margin-right: 15px;
+	text-decoration: none;
+	color: black;
+}
+.botoes a:hover{
+	font-size: 25px;
+	transition: 0.3s;
+}
