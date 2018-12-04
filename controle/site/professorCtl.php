@@ -61,6 +61,32 @@ class professorCtl extends controller{
 		header("location: ../professor");
 	}
 
+	public function estrelas(){
+		session_start();
+		$DAO = new GenericDAO();
+		$professor = new Professor();
+		$avaliacao = $_POST['estrela'];
+		$professor = $_POST['professor'];
+
+		$DAO->query("SELECT * FROM aulas a INNER JOIN usuario_has_aulas ua on ua.aulas_id = a.id INNER JOIN usuario u on u.id = ua.usuario_id INNER JOIN professor p on p.id = a.professor_id WHERE u.id = '".$_SESSION['id']."'");
+		if(count($DAO->result()) != 0){
+			$DAO->insert('avaliacao', array(
+				'numero' => $avaliacao,
+				'usuario_id' => $_SESSION['id']
+			));
+			$DAO->query('SELECT LAST_INSERT_ID()');
+			$last_id = $DAO->result();
+			foreach ($last_id as $dado) {
+				$DAO->insert('professor_has_avaliacao', array(
+					'professor_id' => $professor,
+					'avaliacao_id' => $dado['LAST_INSERT_ID()']
+				));
+			}
+		}
+		header("location: ../professor");
+	}
+
+
 	public function previewNext(){
 		session_start();
 		$selectProfs = new ProfessorDAO();

@@ -1,39 +1,32 @@
-
-
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<?php include_once '../ProjetoFlexbox/controle/site/chat.php';?>
+<?php
+ini_set('display_errors', 0);
+error_reporting(0);
+?>
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
-<!-- Font Awesome -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <!-- Bootstrap core CSS -->
 <link href="../ProjetoFlexbox/assets/MDB/css/bootstrap.min.css" rel="stylesheet">
 <!-- Material Design Bootstrap -->
 <link href="../ProjetoFlexbox/assets/MDB/css/mdb.min.css" rel="stylesheet">
 
 <!-- Your custom styles (optional) -->
-<link href="../ProjetoFlexbox/assets/MDB/css/style.css" rel="stylesheet">
 <link href="../ProjetoFlexbox/assets/css/professor.css" rel="stylesheet">
 <!------ Include the above in your HEAD tag ---------->
-
 <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <!------ Include the above in your HEAD tag ---------->
+<script type="text/javascript" src="../ProjetoFlexbox/assets/MDB/js/jquery-3.3.1.min.js"></script>
 
 
 <!DOCTYPE html><html class=''>
-<head><script src='//production-assets.codepen.io/assets/editor/live/console_runner-079c09a0e3b9ff743e39ee2d5637b9216b3545af0de366d4b9aad9dc87e26bfd.js'></script><script src='//production-assets.codepen.io/assets/editor/live/events_runner-73716630c22bbc8cff4bd0f07b135f00a0bdc5d14629260c3ec49e5606f98fdd.js'></script><script src='//production-assets.codepen.io/assets/editor/live/css_live_reload_init-2c0dc5167d60a5af3ee189d570b1835129687ea2a61bee3513dee3a50c115a77.js'></script><meta charset='UTF-8'><meta name="robots" content="noindex"><link rel="shortcut icon" type="image/x-icon" href="//production-assets.codepen.io/assets/favicon/favicon-8ea04875e70c4b0bb41da869e81236e54394d63638a1ef12fa558a4a835f1164.ico" /><link rel="mask-icon" type="" href="//production-assets.codepen.io/assets/favicon/logo-pin-f2d2b6d2c61838f7e76325261b7195c27224080bc099486ddd6dccb469b8e8e6.svg" color="#111" /><link rel="canonical" href="https://codepen.io/emilcarlsson/pen/ZOQZaV?limit=all&page=74&q=contact+" />
-  <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700,300' rel='stylesheet' type='text/css'>
-
-  <script src="https://use.typekit.net/hoy3lrg.js"></script>
-  <script>try{Typekit.load({ async: true });}catch(e){}</script>
+<head>
   <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css'><link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.2/css/font-awesome.min.css'>
   <link rel="stylesheet" type="text/css" href="../ProjetoFlexbox/assets/css/style.css">
+</head>
+<body>
 
-</head><body >
-  <nav class="navbar navbar-expand-lg navbar-dark indigo" style="font-family: Roboto">
+
+  <nav class="navbar navbar-expand-lg navbar-dark indigo">
 
     <!-- Navbar brand -->
     <a class="navbar-brand" href="../ProjetoFlexbox">Início</a>
@@ -73,173 +66,209 @@
       margin-left: 90%;" >LOGOUT</button>
     </form>
   </div>
+
+
+
+
+
   <!-- Collapsible content -->
 </nav>
-<?php foreach ($_SESSION['dados'] as $dados) { ?>
 <div id="frame" style="margin-top: -25px;
 height: 93.5%;">
 <div id="sidepanel">
   <div id="profile">
    <div class="wrap">
-    <img id="profile-img" src="../ProjetoFlexbox/controle/arquivos/<?php echo $dados['imagem']; ?>" class="online" alt="" />
-    <p><?php echo $dados['nome']; ?></p>
+    <img id="profile-img" src="../ProjetoFlexbox/controle/arquivos/<?php if ($_SESSION['tipo'] == 'professor') {echo "Professor_";} else {echo "Usuario_";}
+    echo $_SESSION['cpf'];?>/<?php echo $_SESSION['imagem']; ?>" class="online" alt="" />
+    <p><?php echo $_SESSION['login']; ?></p>
+  </div>
 </div>
-</div>
-<?php } ?>
 <div id="search">
  <label for=""><i class="fa fa-search" aria-hidden="true"></i></label>
  <input type="text" placeholder="Search contacts..." />
 </div>
+
+
+<!---------------------------------------------------------------------------------------------------------------------->
+<!---------------------------------------------------------------------------------------------------------------------->
+<div class="dropdown">
+  <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Criar Sala de batepapo
+  </button>
+
+  <div class="dropdown-menu" style="border-radius: 20px;">
+    <form class="px-4 py-3" method="post" action="chat/criarSala">
+      <div class="form-group">
+        <label>Nome da Sala</label>
+        <input type="text" class="form-control" name="nome" id="name">
+      </div>
+      <div class="form-group">
+        <label >User ID</label>
+        <input type="text" class="form-control" name="userId" id="userId">
+      </div>
+      <button type="submit" class="btn btn-primary">Criar</button>
+    </form>
+  </div>
+</div>
+<!---------------------------------------------------------------------------------------------------------------------->
+<!---------------------------------------------------------------------------------------------------------------------->
+
+
+
+
+
 <div id="contacts">
- <ul>
-  <li class="contact">
-   <div class="wrap">
-    <span class="contact-status online"></span>
-    <img src="http://emilcarlsson.se/assets/louislitt.png" alt="" />
-    <div class="meta">
-     <p class="name">Louis Litt</p>
-     <p class="preview">Eai</p>
-   </div>
- </div>
-</li>
-<li class="contact active">
- <div class="wrap">
-  <span class="contact-status busy"></span>
-  <img src="http://emilcarlsson.se/assets/harveyspecter.png" alt="" />
-  <div class="meta">
-   <p class="name">Harvey Specter</p>
-   <p class="preview">Exemplo de Chat</p>
- </div>
-</div>
-</li>
-<li class="contact">
- <div class="wrap">
-  <span class="contact-status"></span>
-  <img src="http://emilcarlsson.se/assets/haroldgunderson.png" alt="" />
-  <div class="meta">
-   <p class="name">Harold Gunderson</p>
-   <p class="preview">Obrigado</p>
- </div>
-</div>
-</li>
+  <?php if ($_SESSION['tipo'] == 'professor') {
+    $_SESSION['idAlt'] = 'Pr.' . $_SESSION['id'];
+  } else {
+    $_SESSION['idAlt'] = $_SESSION['id'];
+  }?>
+  <ul>
+   <?php foreach ($chatkit->getUserRooms(['id' => $_SESSION['idAlt']])['body'] as $room) {?>
+    <?php if (count($room['member_user_ids']) == 2) {
+      foreach ($room['member_user_ids'] as $id) {
+        if ($_SESSION['idAlt'] != $id) {?>
+          <form action="chat/abreChat" method="post" >
+            <button name="id" value="<?php echo $room['id']; ?>" hidden id="inputSubmit<?php echo $room['id']; ?>" ></button>
+            <li class="contact" id="chamaSubmit<?php echo $room['id']; ?>">
+              <div class="wrap" >
+                <img src="../ProjetoFlexbox/controle/arquivos/<?php echo $chatkit->getUser(['id' => $id])['body']['custom_data']['pasta']; ?>/<?php echo $chatkit->getUser(['id' => $id])['body']['custom_data']['imagem']; ?>" alt="" />
+                <script>
+                  $('#chamaSubmit<?php echo $room['id']; ?>').on('click', function() {
+                   $('#inputSubmit<?php echo $room['id']; ?>').trigger('click');
+                 });
+               </script>
+             <?php }
+           }
+         }?>
+         <div class="meta">
+          <p class="name">
+            <?php
+            if (count($room['member_user_ids']) == 2) {
+
+              foreach ($room['member_user_ids'] as $id) {
+                if ($_SESSION['idAlt'] != $id) {
+
+                  echo $chatkit->getUser(['id' => $id])['body']['name'];
+                }
+              }
+            }?>
+          </p>
+          <p class="preview"></p>
+        </div>
+      </div>
+    </li>
+
+  </form>
+<?php }?>
 </ul>
 </div>
+
+
 </div>
+
 <div class="content">
-  <div class="contact-profile">
-   <img src="http://emilcarlsson.se/assets/harveyspecter.png" alt="" />
-   <p>Harvey Specter</p>
+
+  <?php if(isset($_SESSION['roomIntern'])){
+   foreach ($_SESSION['roomIntern']['member_user_ids'] as $roomIntern) {
+    if (count($roomIntern) <= 2) {
+      if ($_SESSION['idAlt'] != $roomIntern) {
+        ?>
+        <div class="contact-profile">
+         <img src="../ProjetoFlexbox/controle/arquivos/<?php echo $chatkit->getUser(['id' => $roomIntern])['body']['custom_data']['pasta']; ?>/<?php echo $chatkit->getUser(['id' => $roomIntern])['body']['custom_data']['imagem']; ?>" alt="" />
+         <p><?php echo $chatkit->getUser(['id' => $roomIntern])['body']['name']; ?></p>
+       </div>
+     <?php }
+   }
+ }
+}?>
+<div class="messages" id="messages">
+  <ul id="message-list">
+  </ul>
 </div>
-<?php foreach ($_SESSION['dados'] as $dados) { ?>
-<div class="messages">
- <ul>
-  <li class="sent">
-   <img src="../ProjetoFlexbox/controle/arquivos/<?php echo $dados['imagem']; ?>" alt="" />
-   <p>Exemplo de Chat</p>
- </li>
- <li class="replies">
-   <img src="http://emilcarlsson.se/assets/harveyspecter.png" alt="" />
-   <p>Exemplo de Chat</p>
- </li>
- <li class="replies">
-   <img src="http://emilcarlsson.se/assets/harveyspecter.png" alt="" />
-   <p>Exemplo de Chat</p>
- </li>
- <li class="sent">
-   <img src="../ProjetoFlexbox/controle/arquivos/<?php echo $dados['imagem']; ?>" alt="" />
-   <p>Exemplo de Chat</p>
- </li>
- <li class="replies">
-   <img src="http://emilcarlsson.se/assets/harveyspecter.png" alt="" />
-   <p>Exemplo de Chat</p>
- </li>
- <li class="replies">
-   <img src="http://emilcarlsson.se/assets/harveyspecter.png" alt="" />
-   <p>Exemplo de Chat</p>
- </li>
- <li class="sent">
-   <img src="../ProjetoFlexbox/controle/arquivos/<?php echo $dados['imagem']; ?>" alt="" />
-   <p>Exemplo de Chat</p>
- </li>
- <li class="replies">
-   <img src="http://emilcarlsson.se/assets/harveyspecter.png" alt="" />
-   <p>Exemplo de Chat</p>
- </li>
-</ul>
-</div>
-<?php } ?>
+
 <div class="message-input">
  <div class="wrap">
-   <input type="text" placeholder="Write your message..." />
-   <i class="fa fa-paperclip attachment" aria-hidden="true"></i>
-   <button class="submit"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+   <form id="message-form" method="post">
+     <input type="text" placeholder="Write your message..." id="message-text"/>
+     <i class="fa fa-paperclip attachment" aria-hidden="true"></i>
+     <button class="submit" type="submit"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+   </form>
  </div>
 </div>
 </div>
+
+
 </div>
-<script src='//production-assets.codepen.io/assets/common/stopExecutionOnTimeout-b2a7b3fe212eaa732349046d8416e00a9dec26eb7fd347590fbced3ab38af52e.js'></script><script src='https://code.jquery.com/jquery-2.2.4.min.js'></script>
-<script >$(".messages").animate({ scrollTop: $(document).height() }, "fast");
 
-$("#profile-img").click(function() {
-	$("#status-options").toggleClass("active");
-});
-
-$(".expand-button").click(function() {
-  $("#profile").toggleClass("expanded");
-  $("#contacts").toggleClass("expanded");
-});
-
-$("#status-options ul li").click(function() {
-	$("#profile-img").removeClass();
-	$("#status-online").removeClass("active");
-	$("#status-away").removeClass("active");
-	$("#status-busy").removeClass("active");
-	$("#status-offline").removeClass("active");
-	$(this).addClass("active");
-	
-	if($("#status-online").hasClass("active")) {
-		$("#profile-img").addClass("online");
-	} else if ($("#status-away").hasClass("active")) {
-		$("#profile-img").addClass("away");
-	} else if ($("#status-busy").hasClass("active")) {
-		$("#profile-img").addClass("busy");
-	} else if ($("#status-offline").hasClass("active")) {
-		$("#profile-img").addClass("offline");
-	} else {
-		$("#profile-img").removeClass();
-	};
-	
-	$("#status-options").removeClass("active");
-});
-
-function newMessage() {
-	message = $(".message-input input").val();
-	if($.trim(message) == '') {
-		return false;
-	}
-	$('<li class="sent"><img src="../ProjetoFlexbox/controle/arquivos/<?php echo $dados['imagem']; ?>" alt="" /><p>' + message + '</p></li>').appendTo($('.messages ul'));
-	$('.message-input input').val(null);
-	$('.contact.active .preview').html('<span>You: </span>' + message);
-	$(".messages").animate({ scrollTop: $(document).height() }, "fast");
-};
-
-$('.submit').click(function() {
-  newMessage();
-});
-
-$(window).on('keydown', function(e) {
-  if (e.which == 13) {
-    newMessage();
-    return false;
-  }
-});
-//# sourceURL=pen.js
-</script>
-<script type="text/javascript" src="../ProjetoFlexbox/assets/MDB/js/jquery-3.3.1.min.js"></script>
 <!-- Bootstrap tooltips -->
 <script type="text/javascript" src="../ProjetoFlexbox/assets/MDB/js/popper.min.js"></script>
 <!-- Bootstrap core JavaScript -->
 <script type="text/javascript" src="../ProjetoFlexbox/assets/MDB/js/bootstrap.min.js"></script>
 <!-- MDB core JavaScript -->
 <script type="text/javascript" src="../ProjetoFlexbox/assets/MDB/js/mdb.min.js"></script>
+
+<!-- Pusher ChatKit -->
+<script src="https://js.pusher.com/4.3/pusher.min.js"></script>
+<script src="https://unpkg.com/@pusher/chatkit-client@1/dist/web/chatkit.js"></script>
+
+<script type="text/javascript">
+
+
+
+  const tokenProvider = new Chatkit.TokenProvider({
+    url: "https://us1.pusherplatform.io/services/chatkit_token_provider/v1/af3aa747-66bc-4b25-93d7-bbb125df0f20/token"
+  });
+  const chatManager = new Chatkit.ChatManager({
+    instanceLocator: "v1:us1:af3aa747-66bc-4b25-93d7-bbb125df0f20",
+    userId: "<?php echo $_SESSION['idAlt']; ?>",
+    tokenProvider: tokenProvider
+  });
+
+  chatManager
+  .connect()
+  .then(currentUser => {
+    currentUser.subscribeToRoom({
+      roomId: "<?php echo $_SESSION['roomIntern']['id']; ?>",
+      hooks: {
+        onMessage: message => {
+          console.log('Aderson');
+          const ul = document.getElementById("message-list");
+          console.log(message);
+          if(message.senderId == "<?php echo $_SESSION['idAlt']; ?>"){
+            const li = document.createElement("li");
+            const p = document.createElement("p");
+            li.setAttribute('class', 'sent');
+            p.appendChild(document.createTextNode(`${message.text}`));
+            li.appendChild(p);
+            ul.appendChild(li);
+          }else{
+            const li = document.createElement("li");
+            const p = document.createElement("p");
+            li.setAttribute('class', 'replies');
+            p.appendChild(document.createTextNode(` ${message.text}`));
+            li.appendChild(p);
+            ul.appendChild(li);
+          }
+          
+        }
+      }
+    });
+
+    const form = document.getElementById("message-form");
+    form.addEventListener("submit", e => {
+      e.preventDefault();
+      const input = document.getElementById("message-text");
+      currentUser.sendMessage({
+        text: input.value,
+        roomId: "<?php echo $_SESSION['roomIntern']['id']; ?>"
+      });
+      input.value = "";
+    });
+  })
+  .catch(error => {
+    console.error("error:", error);
+  });
+</script>
+
 </body></html>

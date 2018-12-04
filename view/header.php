@@ -20,6 +20,10 @@ $lista = new logarCtl();
 	<link href="../ProjetoFlexbox/assets/MDB/css/style.css" rel="stylesheet">
 	<link href="../ProjetoFlexbox/assets/css/professor.css" rel="stylesheet">
 	<link rel="stylesheet" href="../ProjetoFlexbox/assets/Croppie/croppie.css" />
+
+	<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+	<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+
 </head>
 
 <body>
@@ -65,8 +69,8 @@ $lista = new logarCtl();
 
 				<div class="mr-sm-2">
 
-					<li class="login" style="color: white;"><?php echo $_SESSION['login'];  ?></a></li>
-					<li class="login" style="color: white;"><?php echo $_SESSION['email'];  ?></a></li>
+					<li class="login" style="color: white;"><?php echo $_SESSION['login']; ?></a></li>
+					<li class="login" style="color: white;"><?php echo $_SESSION['email']; ?></a></li>
 				</div>
 			</div>
 			<button class="btn btn-danger" style="font-size: 15px;

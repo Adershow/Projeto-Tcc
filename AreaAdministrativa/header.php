@@ -9,7 +9,6 @@ session_start();
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Simple Responsive Admin</title>
   <!-- BOOTSTRAP STYLES-->
   <link href="../assets/arquivos/bootstrap.css" rel="stylesheet" />
   <!-- FONTAWESOME STYLES-->
@@ -29,10 +28,6 @@ session_start();
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#">
-          <img src="../ProjetoFlexbox/assets/arquivos/img" />
-
-        </a>
       </div>
       <div style="display: inline-flex; margin-left: 70%;">
         <div class="loginDiv" >
@@ -43,7 +38,6 @@ session_start();
             <button class="btn btn-danger" style="margin-left: 25px;">LOGOUT</button>
           </form>
         </div>
-        <div class="loginDiv2"><img width="50px" height="50px" src="../ProjetoFlexbox/controle/arquivos/<?php echo $_SESSION['imagem'];?>" /></div>
       </div>
     </div>
   </div>

@@ -79,8 +79,15 @@ class minhacontaCtl extends controller{
 			$professor->setEmail($_POST['email']);
 			$professor->setUf($_POST['uf']);
 			$professor->setCidade($_POST['cidade']);
-			if($this->verificaEmail('usuario' ,$usuario->getEmail()) == true){
-				$DAO->query("UPDATE professor SET nome ='".$professor->getNome()."', email ='".$professor->getEmail()."', uf='".$professor->getUf()."', cidade='".$professor->getCidade()."' WHERE id='".$professor->getId()."'");
+			$usuario->setImagem1($_POST['foto']);
+			$imagem = $usuario->getImagem1();
+
+			if($this->verificaEmail('professor' ,$professor->getEmail()) == true){
+
+				$data = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $imagem));
+				file_put_contents('../ProjetoFlexbox/controle/arquivos/Professor_'.$_SESSION['cpf'].'/'.$_SESSION['cpf'].'.png', $data); 
+
+				$DAO->query("UPDATE professor SET nome ='".$professor->getNome()."', email ='".$professor->getEmail()."', uf='".$professor->getUf()."', cidade='".$professor->getCidade()."', imagem1='".$_SESSION['cpf'].'.png'."' WHERE id='".$professor->getId()."'");
 				$DAO->query("SELECT * FROM professor WHERE id='".$professor->getId()."'");
 				foreach ($DAO->result() as $usu) {
 					$_SESSION['id'] = $usu['id'];
@@ -88,22 +95,30 @@ class minhacontaCtl extends controller{
 					$_SESSION['email'] = $usu['email'];
 					$_SESSION['cidade'] = $usu['cidade'];
 					$_SESSION['uf'] = $usu['uf'];
+					$_SESSION['imagem1'] = $usu['imagem1'];
 				}
-
-				echo"<script language='javascript' type='text/javascript'>alert('Alterado com sucesso');window.location.href='../';</script>";
-				exit;
+				
+				$this->listarDados();
 			}else{
 				echo"<script language='javascript' type='text/javascript'>alert('Email já existente');window.location.href='../minhaconta';</script>";
 				exit;
 			}
 		}else{
+
 			$usuario->setId($_POST['id']);
 			$usuario->setNome($_POST['nome']);
 			$usuario->setEmail($_POST['email']);
 			$usuario->setUf($_POST['uf']);
 			$usuario->setCidade($_POST['cidade']);
+			$usuario->setImagem1($_POST['foto']);
+			$imagem = $usuario->getImagem1();
+			
+			$data = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $imagem));
+			file_put_contents('../ProjetoFlexbox/controle/arquivos/Usuario_'.$_SESSION['cpf'].'/'.$_SESSION['cpf'].'.png', $data); 
+
 			if($this->verificaEmail('usuario' ,$usuario->getEmail()) == true){
-				$DAO->query("UPDATE usuario SET nome ='".$usuario->getNome()."', email ='".$usuario->getEmail()."', uf='".$usuario->getUf()."', cidade='".$usuario->getCidade()."' WHERE id='".$usuario->getId()."'");
+
+				$DAO->query("UPDATE usuario SET nome ='".$usuario->getNome()."', email ='".$usuario->getEmail()."', uf='".$usuario->getUf()."', cidade='".$usuario->getCidade()."', imagem1 = '".$_SESSION['cpf'].'.png'."' WHERE id='".$usuario->getId()."'");
 				$DAO->query("SELECT * FROM usuario WHERE id='".$usuario->getId()."'");
 
 				foreach ($DAO->result() as $usu) {
@@ -112,13 +127,14 @@ class minhacontaCtl extends controller{
 					$_SESSION['email'] = $usu['email'];
 					$_SESSION['cidade'] = $usu['cidade'];
 					$_SESSION['uf'] = $usu['uf'];
+					$_SESSION['imagem1'] = $usu['imagem1'];
 				}
-				echo"<script language='javascript' type='text/javascript'>alert('Alterado com sucesso');window.location.href='../';</script>";
-				exit;
+				$this->listarDados();
 			}else{
 				echo"<script language='javascript' type='text/javascript'>alert('Email já existente');window.location.href='../minhaconta';</script>";
 				exit;
 			}
+			
 		}
 
 	}

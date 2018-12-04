@@ -1,5 +1,5 @@
 <?php
-require '../controle/materiasCtl.php';
+require_once '../controle/materiasCtl.php';
 $lista = new materiasCtl();
 ?>
 <? include "header.php"; ?>
@@ -21,7 +21,7 @@ $lista = new materiasCtl();
             <th>#</th>
             <th>Nome</th>
             <th>Descrição</th>
-            <th>Botão</th>
+            <th>Opções</th>
           </tr>
         </thead>
         <tbody>

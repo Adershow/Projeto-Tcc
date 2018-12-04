@@ -1,7 +1,7 @@
 <?php 
 class areaAulaCtl extends controller
 {
-    public function __construct()
+	public function __construct()
 	{
 		$this->loadDAO('AulasDAO');
 		$this->loadModel('Aulas');
@@ -9,7 +9,7 @@ class areaAulaCtl extends controller
 
 	public function index()
 	{
-        session_start();
+		session_start();
 		if ((!isset($_SESSION['login']) == true) and (!isset($_SESSION['senha']) == true)) {
 
 			echo "ERRO";
@@ -29,7 +29,7 @@ class areaAulaCtl extends controller
 		}
 	}
 
-    public function listarDados(){
+	public function listarDados(){
 		session_start();
 		$DAO = new AulasDAO();
 		$DAO2 = new AulasDAO();
@@ -37,12 +37,12 @@ class areaAulaCtl extends controller
 		$materias = new AulasDAO();
 
 		$id = $_POST['id'];
-        $materias->selectMaterias($_SESSION['id']);
+		$materias->selectMaterias($_SESSION['id']);
 		$aulasSelect->selectAulas($_SESSION['id'], '', $id);
 		$_SESSION['materiasAreaAula'] = $materias->result();
 		$_SESSION['selectAulas'] = $aulasSelect->result();
-		$DAO->query("SELECT distinct u.id ,u.nome as nomeUsuario, p.nome as nomeProfessor, u.imagem as imagemAl, p.imagem FROM aulas a LEFT OUTER JOIN usuario_has_aulas ua on ua.aulas_id = a.id INNER JOIN usuario u on u.id = ua.usuario_id INNER JOIN professor p on p.id = a.professor_id  WHERE a.id = '".$id."'");
-		$DAO2->query("SELECT p.nome as nomeProfessor, p.imagem FROM aulas a INNER JOIN professor p on p.id = a.professor_id  WHERE a.id = '".$id."'");
+		$DAO->query("SELECT distinct u.id ,u.nome as nomeUsuario, u.cpf, p.nome as nomeProfessor, u.imagem as imagemAl, p.imagem FROM aulas a LEFT OUTER JOIN usuario_has_aulas ua on ua.aulas_id = a.id INNER JOIN usuario u on u.id = ua.usuario_id INNER JOIN professor p on p.id = a.professor_id  WHERE a.id = '".$id."'");
+		$DAO2->query("SELECT p.nome as nomeProfessor, p.cpf, p.imagem FROM aulas a INNER JOIN professor p on p.id = a.professor_id  WHERE a.id = '".$id."'");
 		$_SESSION['dadosAreaAulaProf'] = $DAO2->result();
 		$_SESSION['dadosAreaAulaUsu'] = $DAO->result();
 		header("location: ../areaAula");

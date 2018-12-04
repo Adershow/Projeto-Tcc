@@ -11,6 +11,12 @@
 	margin-bottom: 20px;
 	border-radius: 20px;
 }
+.img-perfilModal{
+	max-width: 200px;
+	height: 200px;
+	margin-left: 200px;
+	border-radius: 20px;
+}
 .tabela{
 	width: 50%;
 	margin: auto;

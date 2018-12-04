@@ -7,11 +7,10 @@ class Usuario{
 	private $email;
 	private $cpf;
 	private $nome;
-	private $datanasc;
 	private $uf;
-	private $cep;
 	private $cidade;
 	private $imagem;
+	private $imagem1;
 	private $senha;
 
 	public function getId() {
@@ -19,23 +18,6 @@ class Usuario{
 	}
 	public function setId($id) {
 		$this->id = $id;
-		return $this;
-	}
-
-	public function getEndereco() {
-		return $this->endereco;
-	}
-
-	public function setEndereco($endereco) {
-		$this->endereco = $endereco;
-		return $this;
-	}
-	public function getTelefone() {
-		return $this->telefone;
-	}
-
-	public function setTelefone($telefone) {
-		$this->telefone = $telefone;
 		return $this;
 	}
 	public function getEmail() {
@@ -63,14 +45,6 @@ class Usuario{
 		$this->nome = $nome;
 		return $this;
 	}
-	public function getDatanasc() {
-		return $this->datanasc;
-	}
-
-	public function setDatanasc($datanasc) {
-		$this->datanasc = $datanasc;
-		return $this;
-	}
 
 	public function getUf() {
 		return $this->uf;
@@ -78,14 +52,6 @@ class Usuario{
 
 	public function setUf($uf) {
 		$this->uf = $uf;
-		return $this;
-	}
-	public function getCep() {
-		return $this->cep;
-	}
-
-	public function setCep($cep) {
-		$this->cep = $cep;
 		return $this;
 	}
 	public function getCidade() {
@@ -102,6 +68,14 @@ class Usuario{
 
 	public function setImagem($imagem) {
 		$this->imagem = $imagem;
+		return $this;
+	}
+	public function getImagem1() {
+		return $this->imagem1;
+	}
+
+	public function setImagem1($imagem1) {
+		$this->imagem1 = $imagem1;
 		return $this;
 	}
 	public function getSenha() {

@@ -20,11 +20,9 @@ $lista = new usuarioCtl();
             <th>#</th>
             <th>Nome</th>
             <th>Email</th>
-            <th>Endereco</th>
+            <th>UF</th>
             <th>CPF</th>
-            <th>Telefone</th>
             <th>ADM</th>
-            <th>Data de Nasc</th>
             <th>Opções</th>
           </tr>
         </thead>

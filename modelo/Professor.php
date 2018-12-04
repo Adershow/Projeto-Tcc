@@ -106,4 +106,13 @@ class Professor{
 		$this->descricao = $descricao;
 		return $this;
 	}
+
+	public function getEndereco() {
+		return $this->endereco;
+	}
+
+	public function setEndereco($endereco) {
+		$this->endereco = $endereco;
+		return $this;
+	}
 }

@@ -1,0 +1,52 @@
+.card-deck{
+	margin-left: 2%;
+	margin-right: 2%;
+	margin-top: 20px;
+}
+.card-deck div{
+	margin: auto;
+	margin-top: 15px;
+}
+.mb-4{
+	min-width: 350px;
+	max-width: 400px ;
+}
+.card-img-top{
+	max-height: 322px;
+	border-radius: 20px;
+	max-width: 300px;
+	margin: auto;
+	min-height: 322px;
+	min-width: 300px;
+}
+.div-table{
+	margin-left: 20%; 
+	margin-right: 20%;
+}
+.div-table table{
+	margin: auto;
+}
+.areaAula{
+	margin: auto; 
+	text-align:center;
+}
+.tabela ul{
+	margin-left: 20%;
+	margin-right: 20%;
+}
+.tabela input{
+	border: none;
+}
+.tabela textarea{
+	border: none;
+}
+.tabela a{
+	margin-left: 100%;
+}
+@media screen and (max-width: 1250px){
+	.div-table,
+	.tabela ul{
+		margin-left: 0%;
+		margin-right: 0%;
+	}
+}

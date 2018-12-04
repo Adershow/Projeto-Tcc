@@ -16,13 +16,9 @@
             <input type="text" name="id" placeholder="ID Automatico" class="form-control" readonly="readonly" /><br/>
             <input type="text" name="nome" placeholder="Nome" class="form-control"  required="required" /><br/>
             <input type="text" name="email" placeholder="Email" class="form-control" required="required"  /><br/>
-            <input type="text" name="endereco" placeholder="endereco" class="form-control" required="required" /><br/>
             <input type="text" name="cpf" placeholder="Digite o CPF, Somente números" class="form-control" size="11" maxlength="11"  required="required" /><br/>
             <input type="text" name="uf" placeholder="uf" class="form-control" size="2" maxlength="2"  required="required" /><br/>
             <input type="text" name="cidade" placeholder="cidade" class="form-control" required="required" /><br/>
-            <input type="number" name="telefone" placeholder="Numero de telefone" class="form-control" required="required" /><br/>
-            <input type="date" name="date" placeholder="Data de nascimento" class="form-control" required="required" / ><br/>
-            <input type="text" name="cep" placeholder="Digite o CEP, somente números" class="form-control" size="8" maxlength="8"  required="required" /><br/>
             <input type="password" name="senha" placeholder="senha" class="form-control" required="required" /><br/>
             <input type="password" name="confirmarSenha" placeholder="confirmar senha" class="form-control" required="required" /><br/>
             <input type="file" name="imagem" class="form-control-file"/><br/>

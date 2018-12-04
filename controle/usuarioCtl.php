@@ -8,23 +8,20 @@ class usuarioCtl{
 		$DAO = new GenericDAO();
 		$DAO->query("SELECT * FROM usuario");
 		foreach ($DAO->result() as $usu) {
-			$date = date("d/m/Y", strtotime($usu['datanasc']));
 
 			echo "<tr><th><img src ='../controle/arquivos/".$usu['imagem']."' height='50px' width='50px'/></th>
 			<th>".$usu['id']."</th>
 			<th>".$usu['nome']."</th>
 			<th>".$usu['email']."</th>
 			<th>".$usu['uf']."</th>
-			<th>".$usu['cpf']."</th>
-			<th>".$usu['telefone']."</th>";
+			<th>".$usu['cpf']."</th>";
 
 			if($usu['adm'] == 1){
 				echo "<th>Sim</th>";
 			}else{
 				echo "<th>Não</th>";
 			}
-			echo "<th>".$date."</th>
-			<th><a href="."../controle/usuarioCtl.php?id=".$usu['id']."><button class='btn btn-danger'>Excluir</button></a></tr>";
+			echo "<th><a href="."../controle/usuarioCtl.php?id=".$usu['id']."><button class='btn btn-danger'>Excluir</button></a></tr>";
 		}
 	}
 	

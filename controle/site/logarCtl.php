@@ -14,9 +14,10 @@ class logarCtl extends controller{
 		$tipo = $_POST["tipo"];
 		if(isset($tipo)){
 			$_SESSION['tipo'] = $tipo;
+			$_SESSION['tipoUper'] = ucfirst($_SESSION['tipo']);
 			$DAO = new GenericDAO();
 			$DAO->query("SELECT * FROM ".$tipo." WHERE email = '".$login."' AND senha = '".$senha."'");
-
+			
 			if (sizeof($DAO->result()) > 0) {
 				$_SESSION['email'] = $login;
 				$_SESSION['senha'] = $senha;
@@ -24,15 +25,22 @@ class logarCtl extends controller{
 				foreach ($DAO->result() as $usu) {
 					if ($usu['adm'] == 1) {
 						header('location:../AreaAdministrativa');
+						$_SESSION['id'] = $usu['id'];
 						$_SESSION['imagem'] = $usu['imagem'];
+						$_SESSION['login'] = $usu['nome'];
 						$_SESSION['email'] = $usu['email'];
+						$_SESSION['cidade'] = $usu['cidade'];
+						$_SESSION['cpf'] = $usu['cpf'];
+						$_SESSION['endereco'] = $usu['endereco'];
+						$_SESSION['uf'] = $usu['uf'];
 					}else{
 						header('location:../');
 						$_SESSION['id'] = $usu['id'];
 						$_SESSION['imagem'] = $usu['imagem'];
 						$_SESSION['login'] = $usu['nome'];
+						$_SESSION['email'] = $usu['email'];
 						$_SESSION['cidade'] = $usu['cidade'];
-						$_SESSION['telefone'] = $usu['telefone'];
+						$_SESSION['cpf'] = $usu['cpf'];
 						$_SESSION['endereco'] = $usu['endereco'];
 						$_SESSION['uf'] = $usu['uf'];
 					}

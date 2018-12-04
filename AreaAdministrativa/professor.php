@@ -20,8 +20,6 @@
                         <th>Email</th>
                         <th>Endereco</th>
                         <th>CPF</th>
-                        <th>Telefone</th>
-                        <th>DataNasc</th>
                         <th>Materia</th>
                         <th>Opções</th>
                     </tr>

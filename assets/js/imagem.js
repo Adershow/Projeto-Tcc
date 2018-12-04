@@ -1,5 +1,5 @@
 $('#mini_foto_new1').on('click', function() {
-	$('#inputImage').trigger('click');
+	$('#upload').trigger('click');
 });
 
 
