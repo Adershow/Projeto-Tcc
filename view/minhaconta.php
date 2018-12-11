@@ -205,6 +205,7 @@ button:focus {
 <script type="text/javascript" src="../ProjetoFlexbox/assets/MDB/js/mdb.min.js"></script>
 <script type="text/javascript" src="../ProjetoFlexbox/assets/Croppie/croppie.js"></script>
 
+
 <script type="text/javascript">
 
 	$('#cropped').on('click', function(){
@@ -303,5 +304,6 @@ button:focus {
 	})();
 	Demo.init();
 </script>
+<script type="text/javascript" src="../ProjetoFlexbox/assets/js/imagem.js"></script>
 </body>
 </html>

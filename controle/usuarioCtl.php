@@ -9,7 +9,7 @@ class usuarioCtl{
 		$DAO->query("SELECT * FROM usuario");
 		foreach ($DAO->result() as $usu) {
 
-			echo "<tr><th><img src ='../controle/arquivos/".$usu['imagem']."' height='50px' width='50px'/></th>
+			echo "<tr><th><img src ='../controle/arquivos/Usuario_".$usu['cpf'].'/'.$usu['imagem']."' height='50px' width='50px'/></th>
 			<th>".$usu['id']."</th>
 			<th>".$usu['nome']."</th>
 			<th>".$usu['email']."</th>
@@ -33,8 +33,6 @@ class usuarioCtl{
 		$usuario->setCpf($_POST['cpf']);
 		$usuario->setUf($_POST['uf']);
 		$usuario->setCidade($_POST['cidade']);
-		$usuario->setTelefone($_POST['telefone']);
-		$usuario->setDatanasc($_POST['date']);
 		$usuario->setSenha($_POST['senha']);
 		$confirmarSenha = $_POST['confirmarSenha'];
 		$usuario->setImagem($_FILES['imagem']);
@@ -43,14 +41,13 @@ class usuarioCtl{
 		if($usuario->getSenha() == $confirmarSenha){
 			if(isset($imagem['tmp_name']) && !empty($imagem['tmp_name'])){
 				$extensao = substr($_FILES['imagem']['name'], -4);
-				print_r(move_uploaded_file($imagem['tmp_name'], 'arquivos/'.md5($usuario->getCpf()).$extensao));
+				mkdir('../ProjetoFlexbox/controle/arquivos/Usuario_' . $usuario->getCpf());
+                print_r(move_uploaded_file($imagem['tmp_name'], '../ProjetoFlexbox/controle/arquivos/Usuario_' . $usuario->getCpf() . '/' . md5($usuario->getCpf()) . $extensao));
 
 				$DAO->insert("usuario", array(
 					"nome" => $usuario->getNome(),
 					"email" => $usuario->getEmail(),
-					"telefone" => $usuario->getTelefone(),
 					"cpf" => $usuario->getCpf(),
-					"datanasc" => $usuario->getDatanasc(),
 					"adm" => '1',
 					"cidade" => $usuario->getCidade(),
 					"imagem" => md5($usuario->getCpf()).$extensao,
@@ -69,9 +66,23 @@ class usuarioCtl{
 
 	public function delete(){
 		$DAO = new GenericDAO();
+		$DAO1 = new GenericDAO();
 		$id = $_GET['id'];
-		$DAO->remove("usuario", $id);
-		header('location:../AreaAdministrativa/usuarios.php');
+		$DAO->query("SELECT *FROM usuario_has_aulas ua WHERE ua.usuario_id ='".$id."'");
+		if(count($DAO->result())>0){
+			echo count($DAO->result());
+			$DAO->query("DELETE FROM usuario_has_aulas WHERE usuario_has_aulas.usuario_id ='".$id."'");
+		}
+		$DAO->query("SELECT *FROM avaliacao a WHERE a.usuario_id ='".$id."'");
+		if(count($DAO->result()) > 0){
+			$DAO1->query("SELECT *FROM avaliacao a WHERE a.usuario_id ='".$id."'");
+			foreach ($DAO1->result() as $ids) {
+				$DAO->query("DELETE FROM professor_has_avaliacao WHERE professor_has_avaliacao.avaliacao_id = '".$ids['id']."'");
+			}
+			$DAO->query("DELETE FROM avaliacao WHERE avaliacao.usuario_id ='".$id."'");
+		}
+		$DAO->query("DELETE FROM usuario WHERE usuario.id ='".$id."'");
+		header('location:/AreaAdministrativa/usuario.php');
 		exit;
 	}
 }

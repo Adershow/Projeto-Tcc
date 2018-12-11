@@ -79,13 +79,18 @@ class minhacontaCtl extends controller{
 			$professor->setEmail($_POST['email']);
 			$professor->setUf($_POST['uf']);
 			$professor->setCidade($_POST['cidade']);
-			$usuario->setImagem1($_POST['foto']);
-			$imagem = $usuario->getImagem1();
-
-			if($this->verificaEmail('professor' ,$professor->getEmail()) == true){
-
+			
+			if($_POST['foto'] != ''){
+				$usuario->setImagem1($_POST['foto']);
+				$imagem = $usuario->getImagem1();
 				$data = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $imagem));
 				file_put_contents('../ProjetoFlexbox/controle/arquivos/Professor_'.$_SESSION['cpf'].'/'.$_SESSION['cpf'].'.png', $data); 
+			}
+
+
+			if($this->verificaEmail('professor' ,$professor->getEmail()) == true){
+				
+				
 
 				$DAO->query("UPDATE professor SET nome ='".$professor->getNome()."', email ='".$professor->getEmail()."', uf='".$professor->getUf()."', cidade='".$professor->getCidade()."', imagem1='".$_SESSION['cpf'].'.png'."' WHERE id='".$professor->getId()."'");
 				$DAO->query("SELECT * FROM professor WHERE id='".$professor->getId()."'");
@@ -97,7 +102,7 @@ class minhacontaCtl extends controller{
 					$_SESSION['uf'] = $usu['uf'];
 					$_SESSION['imagem1'] = $usu['imagem1'];
 				}
-				
+
 				$this->listarDados();
 			}else{
 				echo"<script language='javascript' type='text/javascript'>alert('Email já existente');window.location.href='../minhaconta';</script>";
@@ -110,11 +115,13 @@ class minhacontaCtl extends controller{
 			$usuario->setEmail($_POST['email']);
 			$usuario->setUf($_POST['uf']);
 			$usuario->setCidade($_POST['cidade']);
-			$usuario->setImagem1($_POST['foto']);
-			$imagem = $usuario->getImagem1();
-			
-			$data = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $imagem));
-			file_put_contents('../ProjetoFlexbox/controle/arquivos/Usuario_'.$_SESSION['cpf'].'/'.$_SESSION['cpf'].'.png', $data); 
+			if($_POST['foto'] != ''){
+				$usuario->setImagem1($_POST['foto']);
+				$imagem = $usuario->getImagem1();
+
+				$data = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $imagem));
+				file_put_contents('../ProjetoFlexbox/controle/arquivos/Usuario_'.$_SESSION['cpf'].'/'.$_SESSION['cpf'].'.png', $data); 
+			}
 
 			if($this->verificaEmail('usuario' ,$usuario->getEmail()) == true){
 
@@ -134,7 +141,7 @@ class minhacontaCtl extends controller{
 				echo"<script language='javascript' type='text/javascript'>alert('Email já existente');window.location.href='../minhaconta';</script>";
 				exit;
 			}
-			
+
 		}
 
 	}

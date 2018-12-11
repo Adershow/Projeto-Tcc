@@ -43,6 +43,7 @@ class aulasCtl extends controller
 
 		$aulasSelect->selectAulas($_SESSION['id']);
 		$DAO->query("SELECT * FROM usuario");
+
 		$_SESSION['alunosList'] = $DAO->result();
 		$teste = $aulasSelect->result();
 

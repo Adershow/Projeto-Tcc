@@ -91,8 +91,7 @@
 									<select class="custom-select" id="basic" name="materias[]" multiple="multiple" style="margin-bottom: 10px;
 									max-height: 100px;">
 									<?php foreach ($_SESSION['materiasAula'] as $mat) {?>
-
-
+											
 										<option value="<?php echo $mat['id']; ?>"><?php echo $mat['nomes']; ?></option>
 									<?php } ?>
 								</select>

@@ -185,7 +185,7 @@ class registrarCtl extends controller
             }
         }
 
-        if ($this->verificaEmail('professor', $usuario->getEmail()) == true || $this->verifica('professor', $usuario->getCpf()) == true) {
+        if ($this->verificaEmail('professor', $professor->getEmail()) == true || $this->verifica('professor', $professor->getCpf()) == true) {
             if ($this->verificaCpf($professor->getCpf()) == true) {
                 if ($professor->getSenha() == $confirmarSenha) {
                     if (isset($imagem['tmp_name']) && !empty($imagem['tmp_name'])) {

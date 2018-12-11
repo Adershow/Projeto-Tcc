@@ -7,14 +7,17 @@ session_start();
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
+
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <!-- BOOTSTRAP STYLES-->
   <link href="../assets/arquivos/bootstrap.css" rel="stylesheet" />
   <!-- FONTAWESOME STYLES-->
-  <link href="../assets/arquivos/font-awesome.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <!-- CUSTOM STYLES-->
   <link href="../assets/arquivos/custom.css" rel="stylesheet" />
+
   <!-- GOOGLE FONTS-->
   
 </head>

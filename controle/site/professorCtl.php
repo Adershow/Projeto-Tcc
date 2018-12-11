@@ -65,8 +65,9 @@ class professorCtl extends controller{
 		session_start();
 		$DAO = new GenericDAO();
 		$professor = new Professor();
-		$avaliacao = $_POST['estrela'];
+		$avaliacao = $_POST['valor'];
 		$professor = $_POST['professor'];
+
 
 		$DAO->query("SELECT * FROM aulas a INNER JOIN usuario_has_aulas ua on ua.aulas_id = a.id INNER JOIN usuario u on u.id = ua.usuario_id INNER JOIN professor p on p.id = a.professor_id WHERE u.id = '".$_SESSION['id']."'");
 		if(count($DAO->result()) != 0){

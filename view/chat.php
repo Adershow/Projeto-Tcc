@@ -91,25 +91,6 @@ height: 93.5%;">
 
 <!---------------------------------------------------------------------------------------------------------------------->
 <!---------------------------------------------------------------------------------------------------------------------->
-<div class="dropdown">
-  <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Criar Sala de batepapo
-  </button>
-
-  <div class="dropdown-menu" style="border-radius: 20px;">
-    <form class="px-4 py-3" method="post" action="chat/criarSala">
-      <div class="form-group">
-        <label>Nome da Sala</label>
-        <input type="text" class="form-control" name="nome" id="name">
-      </div>
-      <div class="form-group">
-        <label >User ID</label>
-        <input type="text" class="form-control" name="userId" id="userId">
-      </div>
-      <button type="submit" class="btn btn-primary">Criar</button>
-    </form>
-  </div>
-</div>
 <!---------------------------------------------------------------------------------------------------------------------->
 <!---------------------------------------------------------------------------------------------------------------------->
 

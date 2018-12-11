@@ -1,13 +1,12 @@
 
-<? include 'header.php' ?>
-<?php $DAO = new GenericDAO();
-		$DAO->query("SELECT * FROM materias WHERE ");
-		foreach ($DAO->result() as $usu) {
-
-            $_SESSION['Mid'] = $usu['id'];
-            $_SESSION['Mnome'] = $usu['nomes'];
-            $_SESSION['Mdescricao'] = $usu['descricao'];
-         } ?>
+<?php include 'header.php' ?>
+<?php
+require '../modelo/DAO/GenericDAO.php';
+require '../modelo/Usuario.php';
+ $DAO = new GenericDAO();
+ $id = $_GET['id'];
+		$DAO->query("SELECT * FROM materias WHERE materias.id ='".$id."'");
+		 ?>
 <!-- /. NAV SIDE  -->
 <div id="page-wrapper" >
   <div id="page-inner">
@@ -21,10 +20,13 @@
     <?php  function funcao1(){alert("Eu sou um alert!");} ?>
     <div class="registrarusu" id="aluno">
         <form class="registrarusu1" action="../controle/materiasCtl.php"  method="post">
-            <input type="text" name="id" value="<?php echo $_SESSION['Mid']; ?>" class="form-control" readonly="readonly" /><br/>
-            <input type="text" name="nome" value="<?php echo $_SESSION['Mnome']; ?>" class="form-control"  required="required" /><br/>
-            <input type="text" name="descicao" value="<?php echo $_SESSION['Mdescricao']; ?>" class="form-control" required="required"  /><br/>
+            <?php foreach ($DAO->result() as $usu) {?>
+            <input type="text" name="id" value="<?php echo $usu['id']; ?>" class="form-control" readonly="readonly" /><br/>
+            <input type="text" name="nome" value="<?php echo $usu['nomes']; ?>" class="form-control"  required="required" /><br/>
+            <input type="text" name="descricao" value="<?php echo $usu['descricao']; ?>" class="form-control" required="required"  /><br/>
+
             <input type="submit" class="btn btn-primary">
+        <?php  }  ?>
         </form>
 
     </div>
