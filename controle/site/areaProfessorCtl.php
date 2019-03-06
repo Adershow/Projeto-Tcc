@@ -19,6 +19,8 @@ class areaProfessorCtl extends controller{
 
 	public function listarDados(){
 		session_start();
+		$_SESSION['roomIntern'] = '';
+		$_SESSION['salaNome'] = '';
 		$DAO = new GenericDAO();
 		$id = $_POST['id'];
 		$DAO->query("SELECT * FROM professor p WHERE p.id = '".$id."'");
@@ -37,12 +39,15 @@ class areaProfessorCtl extends controller{
 		foreach($chatkit->getUserRooms(['id' => $_SESSION['idAlt']])['body'] as $room){
 			
 			if($room['name'] == $_SESSION['id'].'.e.'.$id){
+				echo 'entrou';
 				$_SESSION['salaNome'] = true;
 				$_SESSION['roomIntern'] = $chatkit->getRoom([ 'id' => $room['id']])['body'];
+				break;
 			}
 
 		}
-		if($_SESSION['salaNome'] == false){
+		if($_SESSION['salaNome'] == ''){
+			echo 'Esta aqui';
 			if($_SESSION['tipoUper'] == 'Professor'){
 				$chatkit->createRoom([
 					'creator_id' => 'Pr.'.$id,
@@ -50,6 +55,11 @@ class areaProfessorCtl extends controller{
 					'user_ids' => ['Pr.'.$_SESSION['id'], 'Pr'.$id],
 					'private' => true,
 				]);
+				foreach($chatkit->getUserRooms(['id' => $_SESSION['idAlt']])['body'] as $room){
+					if($room['name'] == $_SESSION['id'].'.e.'.$id){
+						$_SESSION['roomIntern'] = $chatkit->getRoom([ 'id' => $room['id']])['body'];
+					}
+				}
 			}else{
 				$chatkit->createRoom([
 					'creator_id' => 'Pr.'.$id,
@@ -57,9 +67,14 @@ class areaProfessorCtl extends controller{
 					'user_ids' => [$_SESSION['id'], 'Pr.'.$id],
 					'private' => true,
 				]);
+				foreach($chatkit->getUserRooms(['id' => $_SESSION['idAlt']])['body'] as $room){
+					if($room['name'] == $_SESSION['id'].'.e.'.$id){
+						$_SESSION['roomIntern'] = $chatkit->getRoom([ 'id' => $room['id']])['body'];
+					}
+				}
 			}
 		}
-
-		header('location: ../areaProfessor');
+		header("location: ../areaProfessor");
+		
 	}
 }

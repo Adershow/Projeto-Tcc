@@ -1,5 +1,5 @@
 <?php
-require 'modelo/DAO//Banco.php';
+require 'modelo/DAO/Banco.php';
 spl_autoload_register(function($class){
 	if(file_exists('controle/site/'.$class.'.php')){
 		require 'controle/site/'.$class.'.php';

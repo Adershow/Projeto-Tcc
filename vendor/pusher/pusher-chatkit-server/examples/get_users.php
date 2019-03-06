@@ -1,6 +1,6 @@
 <?php
 
-require_once(dirname(__FILE__) . '/../vendor/autoload.php');
+require_once(dirname(__FILE__) . '/../ProjetoEstudo/vendor/autoload.php');
 
 $chatkit = new Chatkit\Chatkit([
   'instance_locator' => 'your:instance:locator',

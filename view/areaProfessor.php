@@ -55,7 +55,7 @@
   <div class="text text-r">
     <form id="message-form" method="post">
       <input class="mytext" id="message-text" placeholder="Type a message"/>
-      <button class="submit" type="submit" style="margin-left: 100%;"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+      <button class="submit" style="margin-left: 100%;"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
     </form>
   </div> 
 </div>

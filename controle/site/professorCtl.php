@@ -65,26 +65,35 @@ class professorCtl extends controller{
 		session_start();
 		$DAO = new GenericDAO();
 		$professor = new Professor();
-		$avaliacao = $_POST['valor'];
-		$professor = $_POST['professor'];
+		$avaliacao = substr($_POST['valor'], 0, 1);
+		$professor = substr($_POST['valor'], 1);
 
 
-		$DAO->query("SELECT * FROM aulas a INNER JOIN usuario_has_aulas ua on ua.aulas_id = a.id INNER JOIN usuario u on u.id = ua.usuario_id INNER JOIN professor p on p.id = a.professor_id WHERE u.id = '".$_SESSION['id']."'");
+
+		$DAO->query("SELECT * FROM aulas a INNER JOIN usuario_has_aulas ua on ua.aulas_id = a.id INNER JOIN usuario u on u.id = ua.usuario_id INNER JOIN professor p on p.id = a.professor_id WHERE u.id = '".$_SESSION['id']."' AND p.id ='".$professor."'");
 		if(count($DAO->result()) != 0){
-			$DAO->insert('avaliacao', array(
-				'numero' => $avaliacao,
-				'usuario_id' => $_SESSION['id']
-			));
-			$DAO->query('SELECT LAST_INSERT_ID()');
-			$last_id = $DAO->result();
-			foreach ($last_id as $dado) {
-				$DAO->insert('professor_has_avaliacao', array(
-					'professor_id' => $professor,
-					'avaliacao_id' => $dado['LAST_INSERT_ID()']
+			$DAO->query("SELECT * FROM avaliacao a INNER JOIN professor_has_avaliacao pa on pa.avaliacao_id = a.id INNER JOIN professor p on p.id = pa.professor_id INNER JOIN usuario u on u.id = a.usuario_id WHERE p.id ='".$professor."' AND u.id='".$_SESSION['id']."'");
+			if(count($DAO->result()) == 0){
+				$DAO->insert('avaliacao', array(
+					'numero' => $avaliacao,
+					'usuario_id' => $_SESSION['id']
 				));
+				$DAO->query('SELECT LAST_INSERT_ID()');
+				$last_id = $DAO->result();
+				foreach ($last_id as $dado) {
+					$DAO->insert('professor_has_avaliacao', array(
+						'professor_id' => $professor,
+						'avaliacao_id' => $dado['LAST_INSERT_ID()']
+					));
+					header("location: ../professor");
+				}
+			}else{
+				echo"<script language='javascript' type='text/javascript'>alert('Você já deu sua avaliação');window.location.href='../professor';</script>";
 			}
+		}else{
+			echo"<script language='javascript' type='text/javascript'>alert('Você não pode avalia-lo');window.location.href='../professor';</script>";
 		}
-		header("location: ../professor");
+
 	}
 
 
@@ -94,18 +103,18 @@ class professorCtl extends controller{
 		while($i < $_SESSION['numero']){
 			$i++;
 		}
-		
+
 		if(isset($_POST['next']) && $_POST['next'] <= $i){
 
 			$url = $_POST['next'];
 			$mody = ($url*5)-5;
-			
+
 			if ($_SESSION['search'] != ''){
 				$selectProfs->selectProfs(array('uf' => $_SESSION['uf'], 'cidade' => $_SESSION['cidade']), $search, $mody);
 			}else{
 				$selectProfs->selectProfs(array('uf' => $_SESSION['uf'], 'cidade' => $_SESSION['cidade']), $search='', $mody);
 			}
-			
+
 			$_SESSION['professores'] = $selectProfs->result();
 			$_SESSION['paginaAtual'] = $url;
 			header("location: ../professor");

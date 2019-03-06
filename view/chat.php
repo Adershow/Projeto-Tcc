@@ -77,70 +77,74 @@ error_reporting(0);
 height: 93.5%;">
 <div id="sidepanel">
   <div id="profile">
-   <div class="wrap">
-    <img id="profile-img" src="../ProjetoFlexbox/controle/arquivos/<?php if ($_SESSION['tipo'] == 'professor') {echo "Professor_";} else {echo "Usuario_";}
-    echo $_SESSION['cpf'];?>/<?php echo $_SESSION['imagem']; ?>" class="online" alt="" />
-    <p><?php echo $_SESSION['login']; ?></p>
+
+    <img class="Diferete" src="../ProjetoFlexbox/controle/arquivos/<?php if ($_SESSION['tipo'] == 'professor') {echo "Professor_";} else {echo "Usuario_";}
+    echo $_SESSION['cpf'];?>/<?php echo $_SESSION['imagem']; ?>" width="50px" height="50px" style="border-radius: 50px;" />
+    <span><p style="margin-left: 60px; margin-top: -30px;"><?php echo $_SESSION['login']; ?></p></span>
+
   </div>
-</div>
-<div id="search">
- <label for=""><i class="fa fa-search" aria-hidden="true"></i></label>
- <input type="text" placeholder="Search contacts..." />
-</div>
+  <div id="search">
+   <label for=""><i class="fa fa-search" aria-hidden="true"></i></label>
+   <input type="text" placeholder="Search contacts..." />
+ </div>
 
 
-<!---------------------------------------------------------------------------------------------------------------------->
-<!---------------------------------------------------------------------------------------------------------------------->
-<!---------------------------------------------------------------------------------------------------------------------->
-<!---------------------------------------------------------------------------------------------------------------------->
-
-
+ <!---------------------------------------------------------------------------------------------------------------------->
+ <!---------------------------------------------------------------------------------------------------------------------->
+ <!---------------------------------------------------------------------------------------------------------------------->
+ <!---------------------------------------------------------------------------------------------------------------------->
 
 
 
-<div id="contacts">
+
+
+ <div id="contacts">
   <?php if ($_SESSION['tipo'] == 'professor') {
     $_SESSION['idAlt'] = 'Pr.' . $_SESSION['id'];
   } else {
     $_SESSION['idAlt'] = $_SESSION['id'];
   }?>
   <ul>
-   <?php foreach ($chatkit->getUserRooms(['id' => $_SESSION['idAlt']])['body'] as $room) {?>
-    <?php if (count($room['member_user_ids']) == 2) {
+
+     <?php foreach ($chatkit->getUserRooms(['id' => $_SESSION['idAlt']])['body'] as $room) {?>
+     <?php if (count($room['member_user_ids']) == 2) {
       foreach ($room['member_user_ids'] as $id) {
         if ($_SESSION['idAlt'] != $id) {?>
-          <form action="chat/abreChat" method="post" >
-            <button name="id" value="<?php echo $room['id']; ?>" hidden id="inputSubmit<?php echo $room['id']; ?>" ></button>
-            <li class="contact" id="chamaSubmit<?php echo $room['id']; ?>">
-              <div class="wrap" >
-                <img src="../ProjetoFlexbox/controle/arquivos/<?php echo $chatkit->getUser(['id' => $id])['body']['custom_data']['pasta']; ?>/<?php echo $chatkit->getUser(['id' => $id])['body']['custom_data']['imagem']; ?>" alt="" />
-                <script>
-                  $('#chamaSubmit<?php echo $room['id']; ?>').on('click', function() {
-                   $('#inputSubmit<?php echo $room['id']; ?>').trigger('click');
-                 });
-               </script>
-             <?php }
-           }
-         }?>
-         <div class="meta">
-          <p class="name">
-            <?php
-            if (count($room['member_user_ids']) == 2) {
+        <div style="margin-left: 10%;">
+        <form action="chat/abreChat" method="post" >
+          <button name="id" value="<?php echo $room['id']; ?>" hidden id="inputSubmit<?php echo $room['id']; ?>" ></button>
+          <li class="contact" id="chamaSubmit<?php echo $room['id']; ?>">
 
-              foreach ($room['member_user_ids'] as $id) {
-                if ($_SESSION['idAlt'] != $id) {
+            <img src="../ProjetoFlexbox/controle/arquivos/<?php echo $chatkit->getUser(['id' => $id])['body']['custom_data']['pasta']; ?>/<?php echo $chatkit->getUser(['id' => $id])['body']['custom_data']['imagem']; ?>" style="border-radius: 50px; width: 50px; height: 50px;" alt="" />
+            <script>
+              $('#chamaSubmit<?php echo $room['id']; ?>').on('click', function() {
+               $('#inputSubmit<?php echo $room['id']; ?>').trigger('click');
+             });
+           </script>
+           <?php }
+         }
+       }?>
+       <div class="meta">
+        <p class="name" style="margin-left: 60px; margin-top: -30px;">
+          <?php
+          if (count($room['member_user_ids']) == 2) {
 
-                  echo $chatkit->getUser(['id' => $id])['body']['name'];
-                }
+            foreach ($room['member_user_ids'] as $id) {
+              if ($_SESSION['idAlt'] != $id) {
+
+                echo $chatkit->getUser(['id' => $id])['body']['name'];
               }
-            }?>
-          </p>
-          <p class="preview"></p>
-        </div>
-      </div>
-    </li>
+            }
+          }?>
+        </p>
 
-  </form>
+        <p class="preview"></p>
+      
+    </div>
+  </li>
+
+</form>
+</div>
 <?php }?>
 </ul>
 </div>
@@ -159,11 +163,11 @@ height: 93.5%;">
          <img src="../ProjetoFlexbox/controle/arquivos/<?php echo $chatkit->getUser(['id' => $roomIntern])['body']['custom_data']['pasta']; ?>/<?php echo $chatkit->getUser(['id' => $roomIntern])['body']['custom_data']['imagem']; ?>" alt="" />
          <p><?php echo $chatkit->getUser(['id' => $roomIntern])['body']['name']; ?></p>
        </div>
-     <?php }
+       <?php }
+     }
    }
- }
-}?>
-<div class="messages" id="messages">
+ }?>
+ <div class="messages" id="messages">
   <ul id="message-list">
   </ul>
 </div>

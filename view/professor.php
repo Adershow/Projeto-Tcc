@@ -4,7 +4,6 @@ ini_set(“display_errors”, 0 );
 ?>
 <?php include ('header.php'); 
 $DAO = new GenericDAO();
-$DAO1 = new GenericDAO();
 
 ?>
 
@@ -58,9 +57,7 @@ $DAO1 = new GenericDAO();
 		<p class="card-text"><?php echo str_replace(',' , ', ', $prof['nomes']); ?></p>
 		
 
-		<?php $DAO->query("SELECT SUM(a.numero) valor_total, COUNT(a.numero) total FROM avaliacao a INNER JOIN professor_has_avaliacao pv on pv.avaliacao_id = a.id INNER JOIN professor p on p.id = pv.professor_id WhERE p.id ='".$prof['id']."'");
-		$DAO1->query("SELECT a.usuario_id, pa.professor_id FROM professor_has_avaliacao pa INNER JOIN avaliacao a on a.id = pa.avaliacao_id INNER JOIN professor p on p.id = pa.professor_id WHERE a.usuario_id = '".$_SESSION['id']."' AND pa.professor_id = '".$prof['id']."'");
-		$professorJaAvaliado = $DAO1->numRows();?>
+		<?php $DAO->query("SELECT SUM(a.numero) valor_total, COUNT(a.numero) total FROM avaliacao a INNER JOIN professor_has_avaliacao pv on pv.avaliacao_id = a.id INNER JOIN professor p on p.id = pv.professor_id WhERE p.id ='".$prof['id']."'");?>
 
 
 		<p class="card-text">
@@ -90,47 +87,47 @@ $DAO1 = new GenericDAO();
 								<?php
 								 switch ($avaliacaoResult) {
 									case 1:?>
-									<img id="1"  class="star" src="../ProjetoFlexbox/assets/images/estrela.jpg" width="30px" height="30px" >
-									<img id="2"  class=" star" src="../ProjetoFlexbox/assets/images/estrelaCinza.jpg" width="30px" height="30px" >
-									<img id="3"  class=" star" src="../ProjetoFlexbox/assets/images/estrelaCinza.jpg" width="30px" height="30px" >
-									<img id="4"  class=" star" src="../ProjetoFlexbox/assets/images/estrelaCinza.jpg" width="30px" height="30px" >
-									<img id="5"  class=" star" src="../ProjetoFlexbox/assets/images/estrelaCinza.jpg" width="30px" height="30px" >
+									<img id="1<?php echo $prof['id']; ?>"  class="star" src="../ProjetoFlexbox/assets/images/estrela.jpg" width="30px" height="30px" >
+									<img id="2<?php echo $prof['id']; ?>"  class=" star" src="../ProjetoFlexbox/assets/images/estrelaCinza.jpg" width="30px" height="30px" >
+									<img id="3<?php echo $prof['id']; ?>"  class=" star" src="../ProjetoFlexbox/assets/images/estrelaCinza.jpg" width="30px" height="30px" >
+									<img id="4<?php echo $prof['id']; ?>"  class=" star" src="../ProjetoFlexbox/assets/images/estrelaCinza.jpg" width="30px" height="30px" >
+									<img id="5<?php echo $prof['id']; ?>"  class=" star" src="../ProjetoFlexbox/assets/images/estrelaCinza.jpg" width="30px" height="30px" >
 									<?php break;
 									case 2:?>
-									<img id="1"  class="star" src="../ProjetoFlexbox/assets/images/estrela.jpg" width="30px" height="30px" >
-									<img id="2"  class="star" src="../ProjetoFlexbox/assets/images/estrela.jpg" width="30px" height="30px" >
-									<img id="3"  class=" star" src="../ProjetoFlexbox/assets/images/estrelaCinza.jpg" width="30px" height="30px" >
-									<img id="4"  class=" star" src="../ProjetoFlexbox/assets/images/estrelaCinza.jpg" width="30px" height="30px" >
-									<img id="5"  class=" star" src="../ProjetoFlexbox/assets/images/estrelaCinza.jpg" width="30px" height="30px" >
+									<img id="1<?php echo $prof['id']; ?>"  class="star" src="../ProjetoFlexbox/assets/images/estrela.jpg" width="30px" height="30px" >
+									<img id="2<?php echo $prof['id']; ?>"  class="star" src="../ProjetoFlexbox/assets/images/estrela.jpg" width="30px" height="30px" >
+									<img id="3<?php echo $prof['id']; ?>"  class=" star" src="../ProjetoFlexbox/assets/images/estrelaCinza.jpg" width="30px" height="30px" >
+									<img id="4<?php echo $prof['id']; ?>"  class=" star" src="../ProjetoFlexbox/assets/images/estrelaCinza.jpg" width="30px" height="30px" >
+									<img id="5<?php echo $prof['id']; ?>"  class=" star" src="../ProjetoFlexbox/assets/images/estrelaCinza.jpg" width="30px" height="30px" >
 									<?php break;
 									case 3:?>
-									<img id="1"  class="star" src="../ProjetoFlexbox/assets/images/estrela.jpg" width="30px" height="30px" >
-									<img id="2"  class="star" src="../ProjetoFlexbox/assets/images/estrela.jpg" width="30px" height="30px" >
-									<img id="3"  class="star" src="../ProjetoFlexbox/assets/images/estrela.jpg" width="30px" height="30px" >
-									<img id="4"  class=" star" src="../ProjetoFlexbox/assets/images/estrelaCinza.jpg" width="30px" height="30px" >
-									<img id="5"  class=" star" src="../ProjetoFlexbox/assets/images/estrelaCinza.jpg" width="30px" height="30px" >
+									<img id="1<?php echo $prof['id']; ?>"  class="star" src="../ProjetoFlexbox/assets/images/estrela.jpg" width="30px" height="30px" >
+									<img id="2<?php echo $prof['id']; ?>"  class="star" src="../ProjetoFlexbox/assets/images/estrela.jpg" width="30px" height="30px" >
+									<img id="3<?php echo $prof['id']; ?>"  class="star" src="../ProjetoFlexbox/assets/images/estrela.jpg" width="30px" height="30px" >
+									<img id="4<?php echo $prof['id']; ?>"  class=" star" src="../ProjetoFlexbox/assets/images/estrelaCinza.jpg" width="30px" height="30px" >
+									<img id="5<?php echo $prof['id']; ?>"  class=" star" src="../ProjetoFlexbox/assets/images/estrelaCinza.jpg" width="30px" height="30px" >
 									<?php break;
 									case 4:?>
-									<img id="1"  class="star" src="../ProjetoFlexbox/assets/images/estrela.jpg" width="30px" height="30px" >
-									<img id="2"  class="star" src="../ProjetoFlexbox/assets/images/estrela.jpg" width="30px" height="30px" >
-									<img id="3"  class=" star" src="../ProjetoFlexbox/assets/images/estrela.jpg" width="30px" height="30px" >
-									<img id="4"  class="star" src="../ProjetoFlexbox/assets/images/estrela.jpg" width="30px" height="30px" >
-									<img id="5"  class=" star" src="../ProjetoFlexbox/assets/images/estrelaCinza.jpg" width="30px" height="30px" >
+									<img id="1<?php echo $prof['id']; ?>"  class="star" src="../ProjetoFlexbox/assets/images/estrela.jpg" width="30px" height="30px" >
+									<img id="2<?php echo $prof['id']; ?>"  class="star" src="../ProjetoFlexbox/assets/images/estrela.jpg" width="30px" height="30px" >
+									<img id="3<?php echo $prof['id']; ?>"  class=" star" src="../ProjetoFlexbox/assets/images/estrela.jpg" width="30px" height="30px" >
+									<img id="4<?php echo $prof['id']; ?>"  class="star" src="../ProjetoFlexbox/assets/images/estrela.jpg" width="30px" height="30px" >
+									<img id="5<?php echo $prof['id']; ?>"  class=" star" src="../ProjetoFlexbox/assets/images/estrelaCinza.jpg" width="30px" height="30px" >
 									<?php break;
 									case 5:?>
-									<img id="1"  class="star" src="../ProjetoFlexbox/assets/images/estrela.jpg" width="30px" height="30px" >
-									<img id="2"  class="star" src="../ProjetoFlexbox/assets/images/estrela.jpg" width="30px" height="30px" >
-									<img id="3"  class=" star" src="../ProjetoFlexbox/assets/images/estrela.jpg" width="30px" height="30px" >
-									<img id="4"  class="star" src="../ProjetoFlexbox/assets/images/estrela.jpg" width="30px" height="30px" >
-									<img id="5"  class="star" src="../ProjetoFlexbox/assets/images/estrela.jpg" width="30px" height="30px" >
+									<img id="1<?php echo $prof['id']; ?>"  class="star" src="../ProjetoFlexbox/assets/images/estrela.jpg" width="30px" height="30px" >
+									<img id="2<?php echo $prof['id']; ?>"  class="star" src="../ProjetoFlexbox/assets/images/estrela.jpg" width="30px" height="30px" >
+									<img id="3<?php echo $prof['id']; ?>"  class=" star" src="../ProjetoFlexbox/assets/images/estrela.jpg" width="30px" height="30px" >
+									<img id="4<?php echo $prof['id']; ?>"  class="star" src="../ProjetoFlexbox/assets/images/estrela.jpg" width="30px" height="30px" >
+									<img id="5<?php echo $prof['id']; ?>"  class="star" src="../ProjetoFlexbox/assets/images/estrela.jpg" width="30px" height="30px" >
 									<?php break;
 									default:?>
 
-									<img id="1"  class="star" src="../ProjetoFlexbox/assets/images/estrelaCinza.jpg" width="30px" height="30px" >
-									<img id="2"  class=" star" src="../ProjetoFlexbox/assets/images/estrelaCinza.jpg" width="30px" height="30px" >
-									<img id="3"  class=" star" src="../ProjetoFlexbox/assets/images/estrelaCinza.jpg" width="30px" height="30px" >
-									<img id="4"  class=" star" src="../ProjetoFlexbox/assets/images/estrelaCinza.jpg" width="30px" height="30px" >
-									<img id="5"  class=" star" src="../ProjetoFlexbox/assets/images/estrelaCinza.jpg" width="30px" height="30px" >
+									<img id="1<?php echo $prof['id']; ?>"  class="star" src="../ProjetoFlexbox/assets/images/estrelaCinza.jpg" width="30px" height="30px" >
+									<img id="2<?php echo $prof['id']; ?>"  class=" star" src="../ProjetoFlexbox/assets/images/estrelaCinza.jpg" width="30px" height="30px" >
+									<img id="3<?php echo $prof['id']; ?>"  class=" star" src="../ProjetoFlexbox/assets/images/estrelaCinza.jpg" width="30px" height="30px" >
+									<img id="4<?php echo $prof['id']; ?>"  class=" star" src="../ProjetoFlexbox/assets/images/estrelaCinza.jpg" width="30px" height="30px" >
+									<img id="5<?php echo $prof['id']; ?>"  class=" star" src="../ProjetoFlexbox/assets/images/estrelaCinza.jpg" width="30px" height="30px" >
 									<?php break;
 								} ?>
 
@@ -139,7 +136,7 @@ $DAO1 = new GenericDAO();
 
 								
 							</i>
-							<input type="text" hidden name="professor" value="<?php echo $prof['id']; ?>">
+							<input type="text" hidden  name="professor" value="<?php echo $prof['id']; ?>">
 							<input type="text" hidden name="valor" id="valor<?php echo $prof['id']; ?>" value=''>
 						</div>
 					</form>
